@@ -25,6 +25,8 @@
 
 #if defined (HAS_GL)
   #include "LinuxRendererGL.h"
+#elif defined(HAS_DOVE_OVERLAY)
+  #include "DoveOverlayRenderer.h"
 #elif HAS_GLES == 2
   #include "LinuxRendererGLES.h"
 #elif defined(HAS_DX)
@@ -171,6 +173,8 @@ public:
 
 #ifdef HAS_GL
   CLinuxRendererGL *m_pRenderer;
+#elif defined(HAS_DOVE_OVERLAY)
+  CDoveOverlayRenderer *m_pRenderer;
 #elif HAS_GLES == 2
   CLinuxRendererGLES *m_pRenderer;
 #elif defined(HAS_DX)
