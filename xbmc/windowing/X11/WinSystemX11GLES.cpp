@@ -34,8 +34,12 @@
 using namespace std;
 
 // Comment out one of the following defines to select the colourspace to use
-//#define RGBA8888
+#ifdef HAS_DOVE_OVERLAY
+/* For dove we use 32 bit per pixel on graphics overlay */
+#define RGBA8888
+#else
 #define RGB565
+#endif
 
 #if defined(RGBA8888)
 #define RSIZE	8
@@ -385,11 +389,13 @@ bool CWinSystemX11GLES::RefreshEGLContext()
   if (m_eglContext)
     eglDestroyContext(m_eglDisplay, m_eglContext);
 
+#ifndef HAS_DOVE_OVERLAY /* Dove GL engine doesn't like the following. Probably EGL_NO_CONTEXT flag */
   if ((m_eglContext = eglCreateContext(m_eglDisplay, eglConfig, EGL_NO_CONTEXT, contextAttributes)) == EGL_NO_CONTEXT)
   {
     CLog::Log(LOGERROR, "EGL Error: Could not create context");
     return false;
   }
+#endif
 
   if ((m_eglContext = eglCreateContext(m_eglDisplay, eglConfig, m_eglContext, contextAttributes)) == EGL_NO_CONTEXT)
   {
