@@ -22,7 +22,7 @@
  *
  */
 
-#if HAS_GLES == 2
+#if HAS_GLES == 2 && !defined(HAS_DOVE_OVERLAY)
 
 #include "xbmc/guilib/FrameBufferObject.h"
 #include "xbmc/guilib/Shader.h"
