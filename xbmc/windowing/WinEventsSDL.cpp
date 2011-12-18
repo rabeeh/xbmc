@@ -36,6 +36,7 @@
 #endif
 
 #if defined(_LINUX) && !defined(__APPLE__)
+typedef int Status; /* Rabeeh - somehow Status typedef is missing, leads error in XKBlib.h */
 #include <X11/Xlib.h>
 #include <X11/XKBlib.h>
 #include "input/XBMC_keysym.h"
