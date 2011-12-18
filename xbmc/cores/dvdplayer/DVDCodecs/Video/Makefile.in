@@ -27,6 +27,12 @@ SRCS += OpenMax.cpp \
         DVDVideoCodecOpenMax.cpp \
 
 endif
+ifeq (@USE_GSTREAMER@,1)
+SRCS += GstDecoder.cpp \
+        DVDVideoCodecGStreamer.cpp \
+
+endif
+
 
 LIB=Video.a
 
